@@ -1,0 +1,1 @@
+# This script will get all hostnames on the domain.

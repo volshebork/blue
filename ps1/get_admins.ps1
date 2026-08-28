@@ -1,0 +1,1 @@
+# This script will get the list of Domain Admins.
