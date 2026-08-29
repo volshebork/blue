@@ -14,8 +14,8 @@
 
 1. Download the download script.
 
-`curl -o ~/Downloads/download.sh https://raw.githubusercontent.com/volshebork/blue/download.sh`
+`curl -o ~/Downloads/download.sh <url to download.sh>`
 
 1. Run the Download Script.
 
-`~/Downloads/download.sh <destination>
+`~/Downloads/download.sh <destination>`
