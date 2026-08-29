@@ -18,11 +18,11 @@ usage() {
 target_range="$1"
 logs_dir="$HOME/blue/logs"
 
-# ping sweep + reverse DNS, saved as XML and plain text
+# ping sweep + reverse DNS, saved as XML, plain text, and grepable
 sudo nmap -sn "$target_range" \
     -oX "$logs_dir/hostnames.xml" \
     -oN "$logs_dir/hostnames.txt" \
-    -oG "$logs_dir/hostnames.gnmap"
+    -oG "$logs_dir/hostnames.gnmap" # used to create ips.txt
 
-# extract just the IPs of live hosts into a plain list, one per line
+# extract just the IPs of live hosts into a plain list, one per line, to be used by get_host_details.sh
 awk '/Status: Up/{print $2}' "$logs_dir/hostnames.gnmap" > "$logs_dir/ips.txt"
