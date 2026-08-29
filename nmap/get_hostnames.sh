@@ -21,4 +21,8 @@ logs_dir="$HOME/blue/logs"
 # ping sweep + reverse DNS, saved as XML and plain text
 sudo nmap -sn "$target_range" \
     -oX "$logs_dir/hostnames.xml" \
-    -oN "$logs_dir/hostnames.txt"
+    -oN "$logs_dir/hostnames.txt" \
+    -oG "$logs_dir/hostnames.gnmap"
+
+# extract just the IPs of live hosts into a plain list, one per line
+awk '/Status: Up/{print $2}' "$logs_dir/hostnames.gnmap" > "$logs_dir/ips.txt"
