@@ -41,17 +41,18 @@ for host in root.findall("host"):
         "vendor": vendor,
     })
 
-# build the three columns matching the original nmap text format, and headers
-headers = ("Host", "Status", "MAC Address")
+# build the four columns, and headers
+headers = ("Hostname", "IP Address", "Status", "MAC Address")
 rows = []
 for h in hosts:
-    host_col = f"{h['hostname']} ({h['ip']})" if h["hostname"] else h["ip"]
+    hostname_col = h["hostname"] if h["hostname"] else ""
+    ip_col = h["ip"]
     status_col = f"Host is up ({h['latency']} latency)." if h["latency"] else "Host is up."
     mac_col = f"{h['mac']} ({h['vendor']})" if h["mac"] else ""
-    rows.append((host_col, status_col, mac_col))
+    rows.append((hostname_col, ip_col, status_col, mac_col))
 
 # compute the widest value per column (including the header) for alignment
-widths = [max(len(row[i]) for row in [headers] + rows) for i in range(3)]
+widths = [max(len(row[i]) for row in [headers] + rows) for i in range(4)]
 
 # build the markdown table, padding every cell to its column's width
 def make_row(cols):
