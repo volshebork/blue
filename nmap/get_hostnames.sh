@@ -27,5 +27,8 @@ sudo nmap -sn "$target_range" \
 # insert a blank line before each host entry in the text output, for readability
 sed -i 's/^Nmap scan report for/\n&/' "$logs_dir/hostnames.txt"
 
+# verify awk is correctly grouping each host's lines together before building the table
+awk -v RS="" -v FS="\n" '{ print NF, $1 }' "$logs_dir/hostnames.txt"
+
 # extract just the IPs of live hosts into a plain list, one per line, to be used by get_host_details.sh
 awk '/Status: Up/{print $2}' "$logs_dir/hostnames.gnmap" > "$logs_dir/ips.txt"
