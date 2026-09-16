@@ -15,7 +15,7 @@ usage() {
 
 # variables
 destination="$1"
-repo_url="https://github.com/<your-username>/blue/archive/refs/heads/main.tar.gz"
+repo_url="https://github.com/volshebork/blue/archive/refs/heads/main.tar.gz"
 
 # ensure destination exists, then download and extract directly into it
 mkdir -p "$destination"
