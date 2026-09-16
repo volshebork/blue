@@ -29,3 +29,6 @@ sed -i 's/^Nmap scan report for/\n&/' "$logs_dir/hostnames.txt"
 
 # extract just the IPs of live hosts into a plain list, one per line, to be used by get_host_details.sh
 awk '/Status: Up/{print $2}' "$logs_dir/hostnames.gnmap" > "$logs_dir/ips.txt"
+
+# generate the readable markdown table from this run's results
+python3 "$HOME/blue/py/make_hostnames_table.py"
