@@ -6,7 +6,7 @@
 set -euo pipefail  # exit on error, unset var, or failed pipe
 
 # variables
-logs_dir="$HOME/blue/logs"
+logs_dir="$HOME/main/blue/logs"
 ips_file="$logs_dir/ips.txt"  # produced by get_hostnames.sh
 ports="${1:-}"  # optional; leave blank to use nmap's default top 1000 ports
 

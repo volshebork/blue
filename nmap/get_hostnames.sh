@@ -16,7 +16,7 @@ usage() {
 
 # variables
 target_range="$1"
-logs_dir="$HOME/blue/logs"
+logs_dir="$HOME/main/blue/logs"
 
 # ping sweep + reverse DNS, saved as XML, plain text, and grepable
 sudo nmap -sn "$target_range" \
@@ -31,4 +31,4 @@ sed -i 's/^Nmap scan report for/\n&/' "$logs_dir/hostnames.txt"
 awk '/Status: Up/{print $2}' "$logs_dir/hostnames.gnmap" > "$logs_dir/ips.txt"
 
 # generate the readable markdown table from this run's results
-python3 "$HOME/blue/py/make_hostnames_table.py"
+python3 "$HOME/main/blue/py/make_hostnames_table.py"

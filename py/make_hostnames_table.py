@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 # variables
-logs_dir = Path.home() / "blue" / "logs"
+logs_dir = Path.home() / "main" / "blue" / "logs"
 xml_file = logs_dir / "hostnames.xml"
 
 # parse the XML and pull out hostname, IP, status, and MAC for each host

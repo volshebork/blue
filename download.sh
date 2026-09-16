@@ -7,7 +7,7 @@ set -euo pipefail  # exit on error, unset var, or failed pipe
 # print usage and exit if called with no/bad args
 usage() {
     echo "Usage: $0 <destination>"
-    echo "Example: $0 ~/blue"
+    echo "Example: $0 ~/main/blue"
     exit 1
 }
 
