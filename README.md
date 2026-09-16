@@ -16,6 +16,10 @@
 
 `curl -o ~/Downloads/download.sh <url to download.sh>`
 
+1. Make script executable.
+
+`chmod u+x ~/Downloads/download.sh`
+
 1. Run the Download Script.
 
 `~/Downloads/download.sh <destination>`
