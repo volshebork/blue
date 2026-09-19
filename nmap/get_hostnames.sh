@@ -4,18 +4,14 @@
 
 set -euo pipefail # exit on error, unset var, or failed pipe
 
-# print usage and exit if called with no/bad args
-usage() {
-    echo "Usage: $0 <target_range>"
-    echo "Example: $0 192.168.1.0/24"
+# prompt for target range; blank input is an error
+read -rp "Enter the target IP range to scan (e.g. 192.168.1.0/24): " target_range
+if [[ -z "$target_range" ]]; then
+    echo "Error: target range cannot be blank." >&2
     exit 1
-}
-
-# require at least 1 arg, else print usage and exit
-[[ $# -ge 1 ]] || usage
+fi
 
 # variables
-target_range="$1"
 logs_dir="$HOME/main/blue/logs"
 
 # ping sweep + reverse DNS, saved as XML, plain text, and grepable
