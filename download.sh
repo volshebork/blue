@@ -4,17 +4,11 @@
 
 set -euo pipefail  # exit on error, unset var, or failed pipe
 
-# print usage and exit if called with no/bad args
-usage() {
-    echo "Usage: $0 <destination>"
-    echo "Example: $0 ~/main/blue"
-    exit 1
-}
-
-[[ $# -ge 1 ]] || usage  # require at least 1 arg, else print usage and exit
+# prompt for destination, defaulting to ~/main/blue if left blank
+read -rp "Enter the directory to download the toolkit to [~/main/blue]: " destination
+destination="${destination:-$HOME/main/blue}"
 
 # variables
-destination="$1"
 repo_url="https://github.com/volshebork/blue/archive/refs/heads/main.tar.gz"
 
 # ensure destination exists, then download and extract directly into it
