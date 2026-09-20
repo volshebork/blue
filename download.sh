@@ -6,7 +6,7 @@ set -euo pipefail  # exit on error, unset var, or failed pipe
 
 # prompt for destination, defaulting to ~/main/blue if left blank
 read -rp "Enter the directory to download the toolkit to [~/main/blue]: " destination
-destination="${destination:-$HOME/main/blue}"
+destination="${destination:-$HOME/x0/blue}"
 
 # variables
 repo_url="https://github.com/volshebork/blue/archive/refs/heads/main.tar.gz"
