@@ -1,5 +1,7 @@
 # Blue
 
+This repo was designed for use with Fedora and tested only with Fedora.
+
 ## Requirements
 
 - Bash
