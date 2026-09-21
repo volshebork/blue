@@ -12,8 +12,8 @@ $DomainAdminsReport = Get-ADGroupMember -Identity $GroupName -Recursive |
     } | 
     Select-Object Name, SamAccountName, @{Name="CreationDate"; Expression={$_.whenCreated}}, Enabled
 
-# Option 1: Display the results in an interactive GUI grid
-$DomainAdminsReport | Out-GridView -Title "Domain Admins Creation Dates"
+# Export the results directly to a CSV file
+$DomainAdminsReport | Export-Csv -Path "C:\temp\DomainAdmins_CreationDates.csv" -NoTypeInformation
 
-# Option 2: Uncomment the line below to export the results directly to a CSV file
-# $DomainAdminsReport | Export-Csv -Path "C:\temp\DomainAdmins_CreationDates.csv" -NoTypeInformation
+# Display the results in an interactive GUI grid
+$DomainAdminsReport | Out-GridView -Title "Domain Admins Creation Dates"
