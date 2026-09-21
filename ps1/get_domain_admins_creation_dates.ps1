@@ -15,5 +15,8 @@ $DomainAdminsReport = Get-ADGroupMember -Identity $GroupName -Recursive |
 # Export the results directly to a CSV file
 $DomainAdminsReport | Export-Csv -Path "C:\temp\DomainAdmins_CreationDates.csv" -NoTypeInformation
 
+# Export to a human-readable text file
+$DomainAdminsReport | Format-Table -AutoSize | Out-String -Width 4096 | Out-File "C:\temp\DomainAdmins_CreationDates.txt" -Encoding utf8
+
 # Display the results in an interactive GUI grid
 $DomainAdminsReport | Out-GridView -Title "Domain Admins Creation Dates"

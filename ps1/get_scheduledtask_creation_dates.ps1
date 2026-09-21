@@ -16,5 +16,8 @@ $TaskReport = Get-ScheduledTask | ForEach-Object {
 # Export to CSV
 $TaskReport | Export-Csv -Path "C:\temp\ScheduledTasks_CreationDates.csv" -NoTypeInformation
 
+# Export to a human-readable text file
+$TaskReport | Format-Table -AutoSize | Out-String -Width 4096 | Out-File "C:\temp\ScheduledTasks_CreationDates.txt" -Encoding utf8
+
 # Display in an interactive grid
 $TaskReport | Out-GridView -Title "Scheduled Tasks Creation Dates"
