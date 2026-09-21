@@ -1,5 +1,7 @@
-# Lists scheduled tasks with their creation dates.
-Get-ScheduledTask | ForEach-Object {
+# Lists scheduled tasks with their creation dates, exports to CSV, and shows a grid.
+New-Item -ItemType Directory -Path C:\temp -Force | Out-Null
+
+$TaskReport = Get-ScheduledTask | ForEach-Object {
     $taskFile = Join-Path "$env:SystemRoot\System32\Tasks" ($_.TaskPath.TrimStart('\') + $_.TaskName)
     [pscustomobject]@{
         TaskName    = $_.TaskName
@@ -9,4 +11,10 @@ Get-ScheduledTask | ForEach-Object {
         Registered  = $_.Date
         FileCreated = (Get-Item $taskFile -ErrorAction SilentlyContinue).CreationTime
     }
-} | Sort-Object FileCreated -Descending | Format-Table -AutoSize
+} | Sort-Object FileCreated -Descending
+
+# Export to CSV
+$TaskReport | Export-Csv -Path "C:\temp\ScheduledTasks_CreationDates.csv" -NoTypeInformation
+
+# Display in an interactive grid
+$TaskReport | Out-GridView -Title "Scheduled Tasks Creation Dates"
