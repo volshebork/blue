@@ -1,4 +1,4 @@
-# Disables AD accounts listed in a text file (one username per line), run from a workstation against a target DC.
+# Disables AD accounts listed in a text file (one username per line), run locally on the domain controller.
 
 # Path to the username list - edit this before running
 $listPath = "C:\Users\you\Desktop\usernames.txt"
@@ -8,9 +8,7 @@ if (-not (Test-Path $listPath)) {
     return
 }
 
-# Prompt for the domain controller to target and credentials to use
-$dcName = Read-Host "Enter the domain controller hostname or IP"
-$cred = Get-Credential -Message "Enter credentials with rights to disable accounts"
+Import-Module ActiveDirectory
 
 # Read usernames, skipping blank lines
 $usernames = Get-Content $listPath | Where-Object { $_.Trim() -ne "" }
@@ -20,7 +18,7 @@ if (-not $usernames) {
     return
 }
 
-Write-Host "About to disable $($usernames.Count) account(s) on $dcName`:"
+Write-Host "About to disable $($usernames.Count) account(s):"
 $usernames | ForEach-Object { Write-Host "  - $_" }
 $confirm = Read-Host "Type YES to proceed"
 if ($confirm -ne "YES") {
@@ -31,7 +29,7 @@ if ($confirm -ne "YES") {
 # Disable each account, logging success/failure per user
 $results = foreach ($user in $usernames) {
     try {
-        Disable-ADAccount -Identity $user -Server $dcName -Credential $cred -ErrorAction Stop
+        Disable-ADAccount -Identity $user -ErrorAction Stop
         [pscustomobject]@{ Username = $user; Result = "Disabled" }
     } catch {
         [pscustomobject]@{ Username = $user; Result = "FAILED: $($_.Exception.Message)" }
