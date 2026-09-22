@@ -1,4 +1,15 @@
-# Disables AD accounts listed in a text file (one username per line), run from a workstation against a target DC.
+<#
+.DESCRIPTION
+    Disables AD accounts listed in a text file.
+    Run from a workstation against a target DC.
+    You must edit the list path prior to running.
+    You must have RSAT: Active Directory Domain Services and Lightweight Directory Tools installed.
+
+.NOTES
+    Author: Oscar Cortez
+    Date Created: 2026-09-22
+    Last Modified: 2026-09-22
+#>
 
 # Path to the username list - edit this before running
 $listPath = "C:\Users\you\Desktop\usernames.txt"
