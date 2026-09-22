@@ -1,4 +1,13 @@
-# Enumerates privileged AD groups and reports member creation dates, CSV/TXT/MD exports, terminal grid.
+<#
+.DESCRIPTION
+    Enumerates privileged AD groups and reports member creation dates.
+    CSV/TXT/MD exports, terminal grid.
+
+.NOTES
+    Author: Oscar Cortez
+    Date Created: 2026-09-22
+    Last Modified: 2026-09-22
+#>
 
 function ConvertTo-MarkdownTable {
     param([Parameter(Mandatory)][object[]]$Data)

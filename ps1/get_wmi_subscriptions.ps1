@@ -1,4 +1,13 @@
-# Enumerates WMI permanent event subscriptions (filters, consumers, and bindings) - a common fileless persistence mechanism; exports to CSV/TXT/MD, shows grid.
+<#
+.DESCRIPTION
+    Enumerates WMI permanent event subscriptions (filters, consumers, and bindings) - a common fileless persistence mechanism.
+    Exports to CSV/TXT/MD, shows grid.
+
+.NOTES
+    Author: Oscar Cortez
+    Date Created: 2026-09-22
+    Last Modified: 2026-09-22
+#>
 
 function ConvertTo-MarkdownTable {
     param([Parameter(Mandatory)][object[]]$Data)

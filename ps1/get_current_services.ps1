@@ -1,4 +1,13 @@
-# Lists installed services with start type and path; exports to CSV, TXT, and MD, and shows a grid.
+<#
+.DESCRIPTION
+    Lists installed services with start type and path.
+    Exports to CSV, TXT, and MD, and shows a grid.
+
+.NOTES
+    Author: Oscar Cortez
+    Date Created: 2026-09-22
+    Last Modified: 2026-09-22
+#>
 
 function ConvertTo-MarkdownTable {
     param([Parameter(Mandatory)][object[]]$Data)

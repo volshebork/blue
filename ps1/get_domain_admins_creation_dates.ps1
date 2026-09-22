@@ -1,4 +1,14 @@
-# Lists Domain Admins with creation dates; exports to CSV, TXT, and MD, and shows a grid.
+<#
+.DESCRIPTION
+    Lists Domain Admins with creation dates.
+    Exports to CSV, TXT, and MD, and shows a grid.
+
+
+.NOTES
+    Author: Oscar Cortez
+    Date Created: 2026-09-22
+    Last Modified: 2026-09-22
+#>
 
 function ConvertTo-MarkdownTable {
     param([Parameter(Mandatory)][object[]]$Data)

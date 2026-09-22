@@ -1,4 +1,13 @@
-# Retrieves Event ID 7045 (new service installed) entries from the System log; exports to CSV/TXT/MD, shows grid.
+<#
+.DESCRIPTION
+    Retrieves Event ID 7045 (new service installed) entries from the System log.
+    Exports to CSV/TXT/MD, shows grid.
+
+.NOTES
+    Author: Oscar Cortez
+    Date Created: 2026-09-22
+    Last Modified: 2026-09-22
+#>
 
 function ConvertTo-MarkdownTable {
     param([Parameter(Mandatory)][object[]]$Data)
