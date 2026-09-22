@@ -1,4 +1,14 @@
-# Disables AD accounts listed in a text file (one username per line), run locally on the domain controller.
+<#
+.DESCRIPTION
+    Disables AD accounts listed in a text file.
+    Run locally on the domain controller.
+    You must edit the list path prior to running.
+
+.NOTES
+    Author: Oscar Cortez
+    Date Created: 2026-09-22
+    Last Modified: 2026-09-22
+#>
 
 # Path to the username list - edit this before running
 $listPath = "C:\Users\you\Desktop\usernames.txt"
