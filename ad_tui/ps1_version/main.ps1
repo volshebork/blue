@@ -3,14 +3,13 @@
 
 . "$PSScriptRoot\modules\title.ps1"
 . "$PSScriptRoot\modules\ping.ps1"
-
-Show-Title
+. "$PSScriptRoot\modules\arrow_menu.ps1"
 
 while ($true) {
-    $choice = Read-Host "AD TUI`nSelect: [1] Ping  [2] Exit"
+    $choice = Show-ArrowMenu -Options @("Ping", "Exit") -TitleBlock { Show-Title }
+
     switch ($choice) {
-        "1" { Invoke-PingModule }
-        "2" { return }
-        default { Write-Host "Invalid choice." }
+        "Ping" { Invoke-PingModule }
+        "Exit" { return }
     }
 }
