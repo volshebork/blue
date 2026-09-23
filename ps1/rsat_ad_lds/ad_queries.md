@@ -69,3 +69,14 @@ Set-ADAccountPassword `
     -Server 192.168.1.1 `
     -Credential (Get-Credential)
 ```
+
+Reset a password securely.
+
+```ps1
+Set-ADAccountPassword `
+    -Identity "SamAccountName" `
+    -Reset `
+    -NewPassword (Read-Host -AsSecureString "Enter new password") `
+    -Server 192.168.1.1 `
+    -Credential (Get-Credential)
+```
