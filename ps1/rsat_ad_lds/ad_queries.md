@@ -80,3 +80,12 @@ Set-ADAccountPassword `
     -Server 192.168.1.1 `
     -Credential (Get-Credential)
 ```
+
+Delete user.
+
+```ps1
+Remove-ADUser 
+    `-Identity "SamAccountName" 
+    `-Server 192.168.1.1 
+    `-Credential (Get-Credential)
+```
