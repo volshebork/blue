@@ -32,6 +32,7 @@ A parallel PowerShell version exists in `../ps1_version/` but is kept only as a 
 - Get user details (status, group membership, creation date, password last set, last logon, admin count, expiration, description)
 - Enumerate privileged groups (Domain Admins, Enterprise Admins, Schema Admins, Account Operators, Backup Operators, DnsAdmins - includes nested group membership)
 - Remove users from privileged groups (from a username list file)
+- Disable accounts (from a username list file)
 - Export results to `.txt` (markdown table), `.csv`, or both
 
 ### Upcoming
@@ -42,7 +43,6 @@ A parallel PowerShell version exists in `../ps1_version/` but is kept only as a 
 - Get accounts with password never expiring
 - Get accounts never logged on
 - Get accurate last logon (cross-DC)
-- Disable accounts (from list)
 - Set account expiration (single/bulk)
 - Delete account
 - Reset password (requires LDAPS)
@@ -61,6 +61,7 @@ py_version/
         get_user_details.py
         enumerate_privileged_groups.py
         remove_privileged_groups.py
+        disable_accounts.py
         markdown_table.py
         export_helper.py
 ````
@@ -76,5 +77,8 @@ You'll be prompted for your domain controller and credentials at startup (base D
 ## Notes
 
 - Password reset requires an LDAPS (port 636) connection, since it's a plaintext-sensitive write. This was not testable on the exercise domain controller, where only port 389 was open — not yet implemented.
+- Disable accounts works by flipping the `ACCOUNTDISABLE` bit in `userAccountControl` directly, since `ldap3` has no dedicated "disable account" call the way RSAT's `Disable-ADAccount` does. Test against a non-critical account before relying on it.
 - Session details (domain controller, base DN, username, password) are held in memory only for the current run - nothing is written to disk, and you'll need to re-enter them each time you launch the program.
-- Export path and user list path are not prompted at startup - each is
+- Export path and user list path are not prompted at startup - each is requested once, the first time it's needed, and reused for the rest of the session. Both can also be set/changed proactively from the Session menu.
+- Username list files support blank lines and `#`-prefixed comment lines, which are skipped.
+- Modules requiring valid AD credentials use the session details set at startup; nothing is hardcoded.

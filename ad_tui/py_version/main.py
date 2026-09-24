@@ -5,7 +5,7 @@ from modules import ensure_dependencies
 ensure_dependencies.run()
 
 import questionary
-from modules import title, ping, session, get_user_details, enumerate_privileged_groups, remove_privileged_groups
+from modules import title, ping, session, get_user_details, enumerate_privileged_groups, remove_privileged_groups, disable_accounts
 
 def session_menu():
     while True:
@@ -45,11 +45,13 @@ def actions_menu():
     while True:
         choice = questionary.select(
             "Actions",
-            choices=["Remove Users from Privileged Groups", "Back to Main Menu"]
+            choices=["Remove Users from Privileged Groups", "Disable Accounts", "Back to Main Menu"]
         ).ask()
 
         if choice == "Remove Users from Privileged Groups":
             remove_privileged_groups.run()
+        elif choice == "Disable Accounts":
+            disable_accounts.run()
         elif choice == "Back to Main Menu" or choice is None:
             break
 
