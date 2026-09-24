@@ -29,10 +29,10 @@ A parallel PowerShell version exists in `../ps1_version/` but is kept only as a 
 - Change session details
 - Set export path (prompted automatically on first export if not set)
 - Set user list path (prompted automatically on first use if not set) - shared by all actions that take a username list
-- Get user details (status, group membership, creation date, password last set, last logon, admin count, expiration, description)
+- Get single user details (status, group membership, creation date, password last set, last logon, admin count, expiration, description)
 - Enumerate privileged groups (Domain Admins, Enterprise Admins, Schema Admins, Account Operators, Backup Operators, DnsAdmins - includes nested group membership)
-- Remove users from privileged groups (from a username list file)
-- Disable accounts (from a username list file)
+- Remove a list of users from privileged groups (from a username list file)
+- Disable a list of accounts (from a username list file)
 - Delete account (single account, requires typing `DELETE` to confirm)
 - Export results to `.txt` (markdown table), `.csv`, or both
 
@@ -58,10 +58,10 @@ py_version/
         title.py
         ping.py
         session.py
-        get_user_details.py
+        get_single_user_details.py
         enumerate_privileged_groups.py
-        remove_privileged_groups.py
-        disable_accounts.py
+        remove_list_of_users_from_privileged_groups.py
+        disable_list_of_accounts.py
         delete_account.py
         markdown_table.py
         export_helper.py

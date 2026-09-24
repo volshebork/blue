@@ -1,4 +1,4 @@
-# ad_tui/py_version/modules/get_user_details.py
+# ad_tui/py_version/modules/get_single_user_details.py
 # Queries a specific SamAccountName in AD and reports status, group membership, and key attributes.
 # Offers export to .txt (markdown) and/or .csv.
 
