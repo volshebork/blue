@@ -17,6 +17,29 @@ A menu-driven terminal application for running Active Directory queries and acti
 
 A parallel PowerShell version exists in `../ps1_version/` but is kept only as a minimal reference (title, arrow-key menu, ping) and isn't being developed further.
 
+## Features
+
+### Available
+
+- Ping a host
+
+### Upcoming
+
+- Get user status (Enabled/disabled)
+- Get privileged group membership with creation dates
+- Get all users with creation dates
+- Get disabled accounts
+- Get accounts by creation date
+- Get accounts with password never expiring
+- Get group membership for a user
+- Get accounts never logged on
+- Get accurate last logon (cross-DC)
+- Disable accounts (from list)
+- Remove accounts from privileged groups
+- Set account expiration (single/bulk)
+- Delete account
+- Reset password (requires LDAPS)
+
 ## Structure
 
 ```txt
