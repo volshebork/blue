@@ -1,9 +1,12 @@
 # ad_tui/py_version/modules/get_user_details.py
 # Queries a specific SamAccountName in AD and reports status, group membership, and key attributes.
+# Offers export to .txt (markdown) and/or .csv.
 
 from ldap3 import Server, Connection, ALL, NTLM
 import questionary
 from modules import session
+from modules import markdown_table
+from modules import export_helper
 
 # userAccountControl bit flag for a disabled account
 ACCOUNTDISABLE = 0x2
@@ -49,20 +52,26 @@ def run():
     uac = int(entry.userAccountControl.value) if entry.userAccountControl else 0
     enabled = not bool(uac & ACCOUNTDISABLE)
 
-    print(f"SamAccountName:     {entry.sAMAccountName.value}")
-    print(f"Enabled:            {enabled}")
-    print(f"Created:            {entry.whenCreated.value if entry.whenCreated else 'N/A'}")
-    print(f"Password Last Set:  {entry.pwdLastSet.value if entry.pwdLastSet else 'N/A'}")
-    print(f"Last Logon:         {entry.lastLogonTimestamp.value if entry.lastLogonTimestamp else 'N/A'}")
-    print(f"Account Expires:    {entry.accountExpires.value if entry.accountExpires else 'N/A'}")
-    print(f"AdminCount:         {entry.adminCount.value if entry.adminCount else 0}")
-    print(f"Description:        {entry.description.value if entry.description else 'N/A'}")
-
-    print("Group Memberships:")
+    # Extract just the group CN from each full group DN, for a cleaner display/export
+    groups = []
     if entry.memberOf:
         for group_dn in entry.memberOf.values:
-            print(f"  - {group_dn}")
-    else:
-        print("  (none found)")
+            cn = group_dn.split(",")[0].replace("CN=", "")
+            groups.append(cn)
+
+    row = {
+        "SamAccountName": entry.sAMAccountName.value,
+        "Enabled": enabled,
+        "Created": str(entry.whenCreated.value) if entry.whenCreated else "N/A",
+        "PwdLastSet": str(entry.pwdLastSet.value) if entry.pwdLastSet else "N/A",
+        "LastLogon": str(entry.lastLogonTimestamp.value) if entry.lastLogonTimestamp else "N/A",
+        "AdminCount": entry.adminCount.value if entry.adminCount else 0,
+        "AccountExpires": str(entry.accountExpires.value) if entry.accountExpires else "N/A",
+        "Description": entry.description.value if entry.description else "N/A",
+        "Groups": "; ".join(groups) if groups else "(none)",
+    }
 
     conn.unbind()
+
+    print(markdown_table.build([row]))
+    export_helper.prompt_and_export([row], f"user_details_{target_user}")
