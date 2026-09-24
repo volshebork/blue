@@ -4,7 +4,7 @@
 import subprocess
 import sys
 
-REQUIRED_PACKAGES = ["questionary"]
+REQUIRED_PACKAGES = ["questionary", "ldap3"]
 
 def run():
     missing = []

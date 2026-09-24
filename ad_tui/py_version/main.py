@@ -1,5 +1,5 @@
 # ad_tui/py_version/main.py
-# Menu skeleton only - checks dependencies, then imports and calls each feature module.
+# Menu skeleton only - checks dependencies, sets up session, then imports and calls each feature module.
 
 from modules import ensure_dependencies
 ensure_dependencies.run()
@@ -9,18 +9,20 @@ from modules import title, ping, session
 
 def main():
     title.show()
+    session.prompt_for_session()
+
     while True:
         choice = questionary.select(
             "AD TUI",
-            choices=["Ping", "Set Domain Controller", "Set Credentials", "Exit"]
+            choices=["Ping", "See Session Details", "Change Session Details", "Exit"]
         ).ask()
 
         if choice == "Ping":
             ping.run()
-        elif choice == "Set Domain Controller":
-            session.set_domain_controller()
-        elif choice == "Set Credentials":
-            session.set_credentials()
+        elif choice == "See Session Details":
+            session.show_session_details()
+        elif choice == "Change Session Details":
+            session.prompt_for_session()
         elif choice == "Exit" or choice is None:
             break
 

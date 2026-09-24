@@ -22,6 +22,9 @@ A parallel PowerShell version exists in `../ps1_version/` but is kept only as a 
 ### Available
 
 - Ping a host
+- Set session details (domain controller, base DN, credentials) - prompted at startup
+- See session details
+- Change session details
 
 ### Upcoming
 
@@ -50,6 +53,7 @@ py_version/
         ensure_dependencies.py
         title.py
         ping.py
+        session.py
 ```
 
 ## Usage
@@ -58,9 +62,10 @@ py_version/
 python main.py
 ```
 
-Navigate the menu with arrow keys, Enter to select.
+You'll be prompted for your domain controller and credentials at startup (base DN can be auto-discovered or entered manually). Navigate the menu with arrow keys, Enter to select.
 
 ## Notes
 
 - Password reset is implemented, but requires an LDAPS (port 636) connection, since it's a plaintext-sensitive write. This was not testable on the exercise domain controller, where only port 389 was open.
-- Modules requiring valid AD credentials will prompt for them at runtime; nothing is hardcoded.
+- Session details (domain controller, base DN, username, password) are held in memory only for the current run - nothing is written to disk, and you'll need to re-enter them each time you launch the program.
+- Modules requiring valid AD credentials use the session details set at startup; nothing is hardcoded.
