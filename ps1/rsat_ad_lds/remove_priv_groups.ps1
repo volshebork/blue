@@ -43,6 +43,7 @@ $GroupNames = @(
     "Account Operators",
     "Backup Operators",
     "DnsAdmins"
+    "Administrators "
 )
 
 Write-Host "About to remove $($usernames.Count) account(s) from all privileged groups on $dcName`:"

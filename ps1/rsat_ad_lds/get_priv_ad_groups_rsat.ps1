@@ -58,6 +58,8 @@ $GroupNames = @(
     "Account Operators",
     "Backup Operators",
     "DnsAdmins"
+    "Administrators"
+    "Remote Desktop Users"
 )
 
 # Fetch members of each group, filter for user accounts, tag with group name
