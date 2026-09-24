@@ -5,7 +5,7 @@ from modules import ensure_dependencies
 ensure_dependencies.run()
 
 import questionary
-from modules import title, ping, session, get_user_details, enumerate_privileged_groups, remove_privileged_groups, disable_accounts, delete_account
+from modules import title, ping, session, get_single_user_details, enumerate_privileged_groups, remove_list_of_users_from_privileged_groups, disable_list_of_accounts, delete_account
 
 def session_menu():
     while True:
@@ -29,11 +29,11 @@ def queries_menu():
     while True:
         choice = questionary.select(
             "Queries",
-            choices=["Get User Details", "Enumerate Privileged Groups", "Ping", "Back to Main Menu"]
+            choices=["Get Single User Details", "Enumerate Privileged Groups", "Ping", "Back to Main Menu"]
         ).ask()
 
-        if choice == "Get User Details":
-            get_user_details.run()
+        if choice == "Get Single User Details":
+            get_single_user_details.run()
         elif choice == "Enumerate Privileged Groups":
             enumerate_privileged_groups.run()
         elif choice == "Ping":
@@ -45,13 +45,13 @@ def actions_menu():
     while True:
         choice = questionary.select(
             "Actions",
-            choices=["Remove Users from Privileged Groups", "Disable Accounts", "Delete Account", "Back to Main Menu"]
+            choices=["Remove a List of Users from Privileged Groups", "Disable a List of Accounts", "Delete Account", "Back to Main Menu"]
         ).ask()
 
-        if choice == "Remove Users from Privileged Groups":
-            remove_privileged_groups.run()
-        elif choice == "Disable Accounts":
-            disable_accounts.run()
+        if choice == "Remove a List of Users from Privileged Groups":
+            remove_list_of_users_from_privileged_groups.run()
+        elif choice == "Disable a List of Accounts":
+            disable_list_of_accounts.run()
         elif choice == "Delete Account":
             delete_account.run()
         elif choice == "Back to Main Menu" or choice is None:

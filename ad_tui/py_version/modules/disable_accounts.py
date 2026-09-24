@@ -1,4 +1,4 @@
-# ad_tui/py_version/modules/disable_accounts.py
+# ad_tui/py_version/modules/disable_list_of_accounts.py
 # Disables users listed in a text file by flipping the ACCOUNTDISABLE bit in userAccountControl.
 # Reports per-user results as a markdown table. Offers export.
 

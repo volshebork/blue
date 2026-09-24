@@ -1,4 +1,4 @@
-# ad_tui/py_version/modules/remove_privileged_groups.py
+# ad_tui/py_version/modules/remove_list_of_users_from_privileged_groups.py
 # Removes users listed in a text file from all privileged AD groups
 # (Domain Admins, Enterprise Admins, Schema Admins, Account Operators, Backup Operators, DnsAdmins).
 # Reports per-user, per-group results as a markdown table. Offers export.
