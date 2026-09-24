@@ -5,7 +5,7 @@ from modules import ensure_dependencies
 ensure_dependencies.run()
 
 import questionary
-from modules import title, ping, session, get_user_details
+from modules import title, ping, session, get_user_details, enumerate_privileged_groups
 
 def session_menu():
     while True:
@@ -27,11 +27,13 @@ def queries_menu():
     while True:
         choice = questionary.select(
             "Queries",
-            choices=["Get User Details", "Ping", "Back to Main Menu"]
+            choices=["Get User Details", "Enumerate Privileged Groups", "Ping", "Back to Main Menu"]
         ).ask()
 
         if choice == "Get User Details":
             get_user_details.run()
+        elif choice == "Enumerate Privileged Groups":
+            enumerate_privileged_groups.run()
         elif choice == "Ping":
             ping.run()
         elif choice == "Back to Main Menu" or choice is None:
