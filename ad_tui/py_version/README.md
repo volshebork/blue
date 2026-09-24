@@ -28,8 +28,10 @@ A parallel PowerShell version exists in `../ps1_version/` but is kept only as a 
 - See session details
 - Change session details
 - Set export path (prompted automatically on first export if not set)
+- Set user list path (prompted automatically on first use if not set) - shared by all actions that take a username list
 - Get user details (status, group membership, creation date, password last set, last logon, admin count, expiration, description)
 - Enumerate privileged groups (Domain Admins, Enterprise Admins, Schema Admins, Account Operators, Backup Operators, DnsAdmins - includes nested group membership)
+- Remove users from privileged groups (from a username list file)
 - Export results to `.txt` (markdown table), `.csv`, or both
 
 ### Upcoming
@@ -41,7 +43,6 @@ A parallel PowerShell version exists in `../ps1_version/` but is kept only as a 
 - Get accounts never logged on
 - Get accurate last logon (cross-DC)
 - Disable accounts (from list)
-- Remove accounts from privileged groups
 - Set account expiration (single/bulk)
 - Delete account
 - Reset password (requires LDAPS)
@@ -59,6 +60,7 @@ py_version/
         session.py
         get_user_details.py
         enumerate_privileged_groups.py
+        remove_privileged_groups.py
         markdown_table.py
         export_helper.py
 ````
@@ -75,5 +77,4 @@ You'll be prompted for your domain controller and credentials at startup (base D
 
 - Password reset requires an LDAPS (port 636) connection, since it's a plaintext-sensitive write. This was not testable on the exercise domain controller, where only port 389 was open — not yet implemented.
 - Session details (domain controller, base DN, username, password) are held in memory only for the current run - nothing is written to disk, and you'll need to re-enter them each time you launch the program.
-- Export path is not prompted at startup - it's requested once, the first time you choose to export something, and reused for the rest of the session. It can also be set/changed proactively from the Session menu.
-- Modules requiring valid AD credentials use the session details set at startup; nothing is hardcoded.
+- Export path and user list path are not prompted at startup - each is
