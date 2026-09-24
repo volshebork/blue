@@ -14,6 +14,8 @@ GROUPS = [
     "Account Operators",
     "Backup Operators",
     "DnsAdmins",
+    "Administrators",
+    "Remote Desktop Users",
 ]
 
 ACCOUNTDISABLE = 0x2
