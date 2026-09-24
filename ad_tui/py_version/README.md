@@ -46,6 +46,9 @@ A parallel PowerShell version exists in `../ps1_version/` but is kept only as a 
 - Get accurate last logon (cross-DC)
 - Set account expiration (single/bulk)
 - Reset password (requires LDAPS)
+- Query a group for its members
+- Add the Remote Desktop Users group to the list of groups to remove disabled accounts from
+- Add a description of each menu item to the README
 
 ## Structure
 
