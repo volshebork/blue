@@ -5,7 +5,7 @@ from modules import ensure_dependencies
 ensure_dependencies.run()
 
 import questionary
-from modules import title, ping, session
+from modules import title, ping, session, get_user_details
 
 def main():
     title.show()
@@ -14,7 +14,7 @@ def main():
     while True:
         choice = questionary.select(
             "AD TUI",
-            choices=["Ping", "See Session Details", "Change Session Details", "Exit"]
+            choices=["Ping", "See Session Details", "Change Session Details", "Get User Details", "Exit"]
         ).ask()
 
         if choice == "Ping":
@@ -23,6 +23,8 @@ def main():
             session.show_session_details()
         elif choice == "Change Session Details":
             session.prompt_for_session()
+        elif choice == "Get User Details":
+            get_user_details.run()
         elif choice == "Exit" or choice is None:
             break
 
