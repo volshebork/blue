@@ -69,3 +69,4 @@ You'll be prompted for your domain controller and credentials at startup (base D
 - Password reset is implemented, but requires an LDAPS (port 636) connection, since it's a plaintext-sensitive write. This was not testable on the exercise domain controller, where only port 389 was open.
 - Session details (domain controller, base DN, username, password) are held in memory only for the current run - nothing is written to disk, and you'll need to re-enter them each time you launch the program.
 - Modules requiring valid AD credentials use the session details set at startup; nothing is hardcoded.
+- 
