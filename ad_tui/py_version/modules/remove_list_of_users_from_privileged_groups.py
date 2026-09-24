@@ -15,6 +15,7 @@ GROUPS = [
     "Account Operators",
     "Backup Operators",
     "DnsAdmins",
+    "Administrators",
 ]
 
 def _read_usernames(list_path):
