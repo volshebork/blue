@@ -28,7 +28,7 @@ A parallel PowerShell version exists in `../ps1_version/` but is kept only as a 
 - See session details
 - Change session details
 - Set export path (prompted automatically on first export if not set)
-- Set user list path (prompted automatically on first use if not set) - shared by all actions that take a username list
+- Set list of accounts to disable and/or delete path (prompted automatically on first use if not set) - currently shared by "Disable a List of Accounts" and "Remove a List of Users from Privileged Groups"
 - Get single user details (status, group membership, creation date, password last set, last logon, admin count, expiration, description)
 - Enumerate privileged groups (Domain Admins, Enterprise Admins, Schema Admins, Account Operators, Backup Operators, DnsAdmins - includes nested group membership)
 - Remove a list of users from privileged groups (from a username list file)
