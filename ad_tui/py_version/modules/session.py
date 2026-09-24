@@ -1,6 +1,6 @@
 # ad_tui/py_version/modules/session.py
-# Holds shared AD connection settings (DC host, base DN, credentials) for the current run.
-# Export path is set lazily on first export request, or manually via the Session menu.
+# Holds shared AD connection settings (DC host, base DN, credentials), export path, and user list path for the current run.
+# Export path and user list path are set lazily on first use, or manually via the Session menu.
 # Base DN can be auto-discovered from the DC or entered manually.
 # Other modules read from here instead of prompting each time.
 
@@ -15,6 +15,7 @@ _base_dn = None
 _username = None
 _password = None
 _export_path = None
+_user_list_path = None
 
 def _discover_base_dn(dc_host):
     server = Server(dc_host, get_info=ALL)
@@ -69,6 +70,20 @@ def set_export_path():
     Path(_export_path).mkdir(parents=True, exist_ok=True)
     print(f"Export path set to: {_export_path}")
 
+def get_user_list_path():
+    """Returns the user list file path, prompting for it on first use if not yet set."""
+    global _user_list_path
+    if not _user_list_path:
+        _user_list_path = questionary.text("Enter the path to the username list file:").ask()
+    return _user_list_path
+
+def set_user_list_path():
+    """Prompts to set/change the user list path directly, regardless of current value."""
+    global _user_list_path
+    default = _user_list_path if _user_list_path else ""
+    _user_list_path = questionary.text("Enter the path to the username list file:", default=default).ask()
+    print(f"User list path set to: {_user_list_path}")
+
 def is_configured():
     return all([_dc_host, _base_dn, _username, _password])
 
@@ -79,4 +94,5 @@ def show_session_details():
     print(f"  Username:          {_username}")
     print(f"  Password:          {'*' * len(_password) if _password else None}")
     print(f"  Export Path:       {_export_path if _export_path else '(not set yet)'}")
+    print(f"  User List Path:    {_user_list_path if _user_list_path else '(not set yet)'}")
     input("\nPress Enter to return to the main menu...")

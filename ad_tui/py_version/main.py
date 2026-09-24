@@ -5,13 +5,13 @@ from modules import ensure_dependencies
 ensure_dependencies.run()
 
 import questionary
-from modules import title, ping, session, get_user_details, enumerate_privileged_groups
+from modules import title, ping, session, get_user_details, enumerate_privileged_groups, remove_privileged_groups
 
 def session_menu():
     while True:
         choice = questionary.select(
             "Session",
-            choices=["See Session Details", "Change Session Details", "Set Export Path", "Back to Main Menu"]
+            choices=["See Session Details", "Change Session Details", "Set Export Path", "Set User List Path", "Back to Main Menu"]
         ).ask()
 
         if choice == "See Session Details":
@@ -20,6 +20,8 @@ def session_menu():
             session.prompt_for_session()
         elif choice == "Set Export Path":
             session.set_export_path()
+        elif choice == "Set User List Path":
+            session.set_user_list_path()
         elif choice == "Back to Main Menu" or choice is None:
             break
 
@@ -43,10 +45,12 @@ def actions_menu():
     while True:
         choice = questionary.select(
             "Actions",
-            choices=["Back to Main Menu"]
+            choices=["Remove Users from Privileged Groups", "Back to Main Menu"]
         ).ask()
 
-        if choice == "Back to Main Menu" or choice is None:
+        if choice == "Remove Users from Privileged Groups":
+            remove_privileged_groups.run()
+        elif choice == "Back to Main Menu" or choice is None:
             break
 
 def main():
